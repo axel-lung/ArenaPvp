@@ -1,0 +1,6 @@
+name: ArenaPvp
+main: fr.alsatia.Main
+version: 1.0.0
+author: Alunex
+api: 1.19.3
+api-version: 1.13
