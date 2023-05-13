@@ -6,8 +6,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      MAVEN_VERSION: ${{ steps.extract_version.outputs.maven_version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,7 +18,9 @@ jobs:
         run: mvn package
       - name: Extract Maven Version
         id: extract_version
-        run: echo "::set-output name=maven_version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+        run: |
+          export MAVEN_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "::set-env name=MAVEN_VERSION::$MAVEN_VERSION"
       - name: Deploy to SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
