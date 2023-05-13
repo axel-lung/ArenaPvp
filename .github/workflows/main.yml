@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - master
-env:
-  TEST: ${{$(grep -o '<version>[^<]*</version>' pom.xml | cut -d'>' -f2 | cut -d'<' -f1)}}
 jobs:
   deploy:
     runs-on: ubuntu-latest
