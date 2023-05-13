@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      maven_version: ${{ steps.extract_version.outputs.maven_version }}
+      MAVEN_VERSION: ${{ steps.extract_version.outputs.maven_version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,9 +20,7 @@ jobs:
         run: mvn package
       - name: Extract Maven Version
         id: extract_version
-        run: |
-          maven_version=$(grep -o '<version>[^<]*</version>' pom.xml | cut -d'>' -f2 | cut -d'<' -f1)
-          echo "::set-output name=maven_version::$maven_version"
+        run: echo "::set-output name=maven_version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
       - name: Deploy to SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -30,6 +28,6 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          local_path: './target/ArenaPvp-${{env.maven_version}}.jar'
+          local_path: './target/ArenaPvp-${{ env.MAVEN_VERSION }}.jar'
           remote_path: '/plugins/'
           sftp_only: true
