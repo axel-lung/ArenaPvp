@@ -27,6 +27,6 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          local_path: './target/ArenaPvp-${{ env.maven_version }}.jar'
+          local_path: './target/ArenaPvp-${{ maven_version }}.jar'
           remote_path: '/plugins/'
           sftp_only: true
