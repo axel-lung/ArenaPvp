@@ -17,11 +17,11 @@ jobs:
       - name: Build with Maven
         run: mvn package
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           port: ${{ secrets.FTP_PORT }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: target/
-          remote-dir: /plugins
+          server-dir: /plugins
