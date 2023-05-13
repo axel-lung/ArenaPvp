@@ -2,7 +2,6 @@ package fr.alsatia;
 
 import fr.alsatia.utils.RegenMap;
 import org.bukkit.Bukkit;
-import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
