@@ -6,6 +6,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      MAVEN_VERSION: ""
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
