@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Set env
+        run: echo "TEST=$(grep -o '<version>[^<]*</version>' pom.xml | cut -d'>' -f2 | cut -d'<' -f1)" >> $GITHUB_ENV
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -18,10 +20,6 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn package
-      - name: Extract Maven Version
-        run: |
-          ${{env.TEST}}=$(grep -o '<version>[^<]*</version>' pom.xml | cut -d'>' -f2 | cut -d'<' -f1)
-          echo "Maven Version: $maven_version"
       - name: Deploy to SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
