@@ -1,4 +1,4 @@
-name: Deploy to FTP
+name: Deploy to SFTP
 on:
   push:
     branches:
@@ -16,8 +16,8 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn package
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      - name: Deploy to SFTP
+        uses: appleboy/sftp-deploy@v3.1.1
         with:
           server: ${{ secrets.SERVER }}
           port: ${{ secrets.PORT }}
