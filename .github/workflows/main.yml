@@ -17,7 +17,7 @@ jobs:
       - name: Build with Maven
         run: mvn package
       - name: Deploy to SFTP
-        uses: appleboy/sftp-deploy@v3.1.1
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SERVER }}
           port: ${{ secrets.PORT }}
