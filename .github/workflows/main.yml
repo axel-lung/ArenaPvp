@@ -4,7 +4,7 @@ on:
     branches:
       - master
 env:
-  TEST: $(grep -o '<version>[^<]*</version>' pom.xml | cut -d'>' -f2 | cut -d'<' -f1)
+  TEST: test
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
         run: mvn package
       - name: Extract Maven Version
         run: |
-          maven_version=$(grep -o '<version>[^<]*</version>' pom.xml | cut -d'>' -f2 | cut -d'<' -f1)
+          ${{env.TEST}}=$(grep -o '<version>[^<]*</version>' pom.xml | cut -d'>' -f2 | cut -d'<' -f1)
           echo "Maven Version: $maven_version"
       - name: Deploy to SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
