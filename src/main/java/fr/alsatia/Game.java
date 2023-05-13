@@ -21,7 +21,6 @@ import static org.bukkit.Bukkit.getWorld;
 public class Game {
     private Player p1;
     private Player p2;
-    private PlayerModel pm1, pm2;
     private final PlayerService playerService;
     private BukkitTask task;
     private ServerModel sm;
@@ -233,7 +232,7 @@ public class Game {
 
     public void setP1(Player p1) {
         this.p1 = p1;
-        pm1 = playerService.getPlayer(p1);
+        PlayerModel pm1 = playerService.getPlayer(p1);
     }
 
     public Player getP2() {
@@ -242,7 +241,7 @@ public class Game {
 
     public void setP2(Player p2) {
         this.p2 = p2;
-        pm2 = playerService.getPlayer(p2);
+        PlayerModel pm2 = playerService.getPlayer(p2);
     }
 
     public BukkitTask getTask(){
