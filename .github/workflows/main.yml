@@ -23,6 +23,6 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          local-path: './target/'
-          remote-path: '/plugins/'
-          sftp-only: true
+          local_path: './target/'
+          remote_path: '/plugins/'
+          sftp_only: true
